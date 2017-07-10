@@ -6,18 +6,20 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "nodemon app.js",
-    "db:reset": "dropdb contacts && createdb contacts && npm run load_schema",
+    "db:reset": "dropdb contacts && createdb contacts && npm run load_schema && npm run load_contacts",
     "load_schema": "psql contacts < schema.sql",
     "load_contacts": "psql contacts < contacts.sql",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha testing/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^4.0.2",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
+    "mocha": "^3.4.2",
     "pg-promise": "^6.2.1"
   },
   "devDependencies": {
