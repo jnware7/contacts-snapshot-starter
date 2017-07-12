@@ -9,7 +9,8 @@
     "db:reset": "dropdb contacts && createdb contacts && npm run load_schema && npm run load_contacts",
     "load_schema": "psql contacts < schema.sql",
     "load_contacts": "psql contacts < contacts.sql",
-    "test": "mocha testing/*.js"
+    "test": "mocha testing/*.js",
+    "test2":"./node_modules/.bin/casperjs test testing/UI/casper.js || true"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,8 @@
     "pg-promise": "^6.2.1"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "casperjs": "^1.1.4",
+    "nodemon": "^1.11.0",
+    "phantomjs-prebuilt": "^2.1.14"
   }
 }

@@ -2,9 +2,13 @@ const {expect} = require('chai')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const contacts = require('../server/routes/contacts')
-
+const {initdb} = require('./test_utilities')
 let should = chai.should()
 chai.use(chaiHttp);
+
+beforeEach(() =>
+  initdb()
+)
 
 describe('Contacts ', (done)=>{
   context('/', ()=>{
@@ -86,14 +90,6 @@ describe('Contacts ', (done)=>{
   })
 
   context('/contacts/:contactId/delete',()=>{
-    it('GET route to render /contacts/:contactId/delete page',(done)=>{
-      chai.request('http://localhost:3000')
-      .get('/contacts/:contactId')
-      .end((err,res)=>{
-        expect(res).to.have.status(200);
-        done();
-      })
-    })
     it('GET route to render /contacts/:contactId page',(done)=>{
       chai.request('http://localhost:3000')
       .get('/contacts/1/delete')
@@ -102,6 +98,37 @@ describe('Contacts ', (done)=>{
         expect(res.text).to.not.contain('Jared')
         done();
       })
+    })
+
+  })
+  it('GET route to render /contacts/:contactId/delete page',(done)=>{
+    chai.request('http://localhost:3000')
+    .get('/contacts/:contactId')
+    .end((err,res)=>{
+      expect(res).to.have.status(200);
+      done();
+    })
+  })
+
+  context('/search',()=>{
+    it(' 1. GET route to render /search page',(done)=>{
+      chai.request('http://localhost:3000')
+      .get('/Jeff')
+      .end((err,res)=>{
+      expect(res).to.have.status(200);
+      expect(res.text).contains('<h3>Sorry, the page you have requested was not found :/</h3>');
+        done();
+      })
+    })
+
+  })
+  it('2. GET route to render /search page',(done)=>{
+    chai.request('http://localhost:3000')
+    .get('/contacts/search?q=Jared')
+    .end((err,res)=>{
+     expect(res).to.have.status(200);
+     expect(res.text).contains('<div class="contact-list">');
+      done();
     })
   })
 

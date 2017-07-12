@@ -3,6 +3,8 @@ const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/
 const db = pgp(connectionString)
 
 
+
+
 const createContact = function(contact, callback){
   return db.query(`
     INSERT INTO
@@ -72,4 +74,5 @@ module.exports = {
   getContact,
   deleteContact,
   searchForContact,
+  db
 }
