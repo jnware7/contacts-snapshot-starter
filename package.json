@@ -9,7 +9,7 @@
     "db:reset": "dropdb contacts && createdb contacts && npm run load_schema && npm run load_contacts",
     "load_schema": "psql contacts < schema.sql",
     "load_contacts": "psql contacts < contacts.sql",
-    "test": "mocha testing/*.js",
+    "test": "mocha testing/contacts.js",
     "test2": "./node_modules/.bin/casperjs test testing/UI/casper.js || true",
     "testInteg":"nyc  mocha testing/integration/database.js",
     "allTests":"npm run test && npm run test2 && npm run testInteg"

@@ -73,7 +73,11 @@ describe('deleteContact()', function(){
   it('should remove Tanner contacts', function(done){
     query.deleteContact(2)
       .then((results) => {
-        expect(results).to.equal({id: 2, first_name:"Tanner",last_name:"Welsh"})
+        query.getContacts()
+        .then((contacts)=>{
+          console.log(contacts)
+          expect(contacts).to.not.equal({id: 2, first_name:"Tanner",last_name:"Welsh"})
+        })
         done()
       })
       .catch((error) => {

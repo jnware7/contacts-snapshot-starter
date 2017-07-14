@@ -4,3 +4,4 @@
 1. Add data to the database: `psql -f contacts.sql`
 1. Install your dependencies: `npm install`
 1. Run the server: `nodemon`
+1. Runn all test `npm run allTest`

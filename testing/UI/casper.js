@@ -47,11 +47,11 @@ casper.test.begin('Testing the page status', function(test){
     document.querySelector('.delete-contact').click('.delete-contact')
   })
   casper.setFilter('page.confirm',function(popup){
-    console.log("popup==>",popup)
+    // console.log("popup==>",popup)
     return popup === "Are you sure you want to delete this contact?" ? true : false
   })
   casper.then(function(){
-    console.log(casper.getPageContent())
+    // console.log(casper.getPageContent())
     test.assertTextDoesntExist('Jared','Jared is deleted')
   })
   casper.run(function(){
